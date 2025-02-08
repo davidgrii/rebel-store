@@ -8,7 +8,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <>
       <AppHeader />
       {children}
-      <AppSidebar variant={'services'} />
+      <AppSidebar variant={'small'} />
       <AppFooter className={'lg:pl-20'} />
     </>
   )

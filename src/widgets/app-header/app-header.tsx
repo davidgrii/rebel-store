@@ -1,67 +1,34 @@
+'use client'
+
 import React from 'react'
 import { Logo } from '@/shared/components/ui/logo'
-import { Input } from '@/shared/components/ui/input'
-import { IconPhone } from '@tabler/icons-react'
-import { Heart, MapPin, ShoppingCart, UserRound } from 'lucide-react'
-import Image from 'next/image'
+import { Nav } from '@/widgets/app-header/ui/nav'
+import { SearchInput } from '@/widgets/app-header/ui/search-input'
+import { MobileBurgerIcon } from '@/widgets/app-header/ui/mobile-menu-icon'
+import { Advertisement } from '@/widgets/app-header/ui/advertisement'
+import { MobileSidebar } from '@/widgets/app-header/ui/mobile-sidebar'
 
 export const AppHeader = () => {
   return (
     <>
-      <a className={'bg-primary flex justify-center max-h-10'}>
-        <Image
-          className={'object-cover'}
-          width={700}
-          height={40}
-          src={'/6773d3b15b8bf015715225.jpg'}
-          alt={'ddd'}
-        />
-      </a>
+      <Advertisement />
 
-      <header className={'flex justify-between items-center px-5 shadow-lg'}>
-        <Logo />
+      <header
+        className={
+          'flex flex-wrap justify-between relative z-50 items-center p-4 shadow lg:flex-nowrap lg:px-5 lg:flex lg:py-0'
+        }
+      >
+        <div className={'flex items-center'}>
+          <MobileBurgerIcon />
 
-        <Input className={'bg-secondary rounded w-8/12'} type={'search'} />
+          <MobileSidebar />
 
-        <nav className={'flex items-center gap-5'}>
-          <span className={'flex gap-0.5 items-center'}>
-            <IconPhone width={23} />8 487 257 30 82
-          </span>
+          <Logo />
+        </div>
 
-          <div className={'flex gap-0.5 items-center'}>
-            <div
-              className={
-                'p-2 text-[#414540] bg-none cursor-pointer transition-colors rounded-full hover:bg-secondary'
-              }
-            >
-              <MapPin width={26} height={26} />
-            </div>
+        <SearchInput />
 
-            <div
-              className={
-                'p-2 text-[#414540] bg-none cursor-pointer transition-colors rounded-full hover:bg-secondary'
-              }
-            >
-              <UserRound width={26} height={26} />
-            </div>
-
-            <div
-              className={
-                'p-2 text-[#414540] bg-none cursor-pointer transition-colors rounded-full hover:bg-secondary'
-              }
-            >
-              <Heart width={26} height={26} />
-            </div>
-
-            <div
-              className={
-                'p-2 text-[#414540] bg-none cursor-pointer transition-colors rounded-full hover:bg-secondary'
-              }
-            >
-              <ShoppingCart width={26} height={26} />
-            </div>
-          </div>
-        </nav>
+        <Nav />
       </header>
     </>
   )

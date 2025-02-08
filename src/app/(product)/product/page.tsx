@@ -1,18 +1,26 @@
 'use client'
 
-import { Hero } from '@/shared/components/main/hero'
-import { ProductsList } from '@/shared/components/main/products-list'
+import { ProductBreadcrumbs } from '@/shared/components/product/ui/breadcrumbs'
+import { ProductItem } from '@/shared/components/product/ui/product-item'
+import { ProductBuy } from '@/shared/components/product/ui/product-buy'
+import { ProductDescription } from '@/shared/components/product/ui/product-description'
 import { CTASection } from '@/shared/components/ui/cta-section'
-import { AboutCompany } from '@/shared/components/about-company'
+import { Container } from '@/shared/components/ui/container'
 
-export default function HomePage() {
+export default function ProductPage() {
   return (
-    <div className={'lg:pl-72 bg-[#f5f5f5] pb-20'}>
-      <Hero />
+    <div className={'bg-secondary mt-6 pb-10 md:pl-16'}>
+      <Container className={'bg-background lg:px-10'}>
+        <ProductBreadcrumbs />
 
-      <ProductsList />
+        <div className={'flex flex-col justify-between md:flex-row'}>
+          <ProductItem />
 
-      <AboutCompany />
+          <ProductBuy />
+        </div>
+
+        <ProductDescription />
+      </Container>
 
       <CTASection />
     </div>

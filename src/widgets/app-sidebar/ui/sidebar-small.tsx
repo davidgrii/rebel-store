@@ -1,28 +1,37 @@
+'use client'
+
 import { cn } from '@/shared/components/ui/utils'
 import { CATEGORIES } from '@/shared/constants'
 import Link from 'next/link'
 import { IconChevronRight } from '@tabler/icons-react'
-import { SubListMenu } from '@/widgets/app-sidebar/ui/sub-list'
 import React, { useEffect, useState } from 'react'
 import { useWindowScroll } from 'react-use'
-import { useSublistStore } from '@/shared/store/sublist.store'
+import { useSublistStore } from '@/shared/store/app-sidebar/sublist.store'
+import { AdditionalServices } from '@/widgets/app-sidebar/ui/additional-services'
+import { SubListMenu } from '@/widgets/app-sidebar/ui/sublist-menu'
 
 interface IProps {
   className?: string
 }
 
-export const SidebarDefault: React.FC<IProps> = () => {
+export const SidebarSmall: React.FC<IProps> = () => {
   const { y } = useWindowScroll()
   const [isOpen, setIsOpen] = useState(false)
   const [initialScroll, setInitialScroll] = useState(0)
 
   const { setSublist } = useSublistStore()
 
-  useEffect(() => {
-    setInitialScroll(window.scrollY)
-  }, [])
   const topValue =
     initialScroll === 0 ? (y === 0 ? 105 : Math.max(105 - y, 0)) : 105
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      if (window.scrollY > 0) {
+        setInitialScroll(0)
+      }
+    }
+  }, [])
+
   return (
     <aside
       style={{
@@ -33,17 +42,22 @@ export const SidebarDefault: React.FC<IProps> = () => {
         setSublist([], '')
       }}
       className={cn(
-        'fixed left-0 z-10 max-w-[64] h-full w-full bg-background',
-        isOpen && 'max-w-[280]'
+        'hidden fixed left-0 z-10 max-w-[64px] h-full w-full bg-background border-r lg:block',
+        isOpen && 'max-w-[600px] border-r-none'
       )}
     >
       <div
         className={
-          'flex flex-col overflow-y-scroll justify-between max-h-screen relative'
+          'flex flex-col overflow-y-scroll overflow-x-hidden justify-between max-h-screen relative'
         }
       >
         <nav className={'flex'}>
-          <ul className={'w-full flex flex-col max-w-72 pt-4 border-r'}>
+          <ul
+            className={cn(
+              'w-full flex flex-col max-w-72 pt-4',
+              isOpen && 'border-r'
+            )}
+          >
             {CATEGORIES.map(({ title, Icon, sublist }, index) => (
               <li
                 onMouseEnter={() => {
@@ -63,6 +77,8 @@ export const SidebarDefault: React.FC<IProps> = () => {
                     {' '}
                     <Icon />
                   </span>
+
+                  <span className={'ml-1 font-normal'}>{title}</span>
                 </Link>
 
                 <IconChevronRight
@@ -74,7 +90,7 @@ export const SidebarDefault: React.FC<IProps> = () => {
               </li>
             ))}
 
-            {/*<AdditionalServices />*/}
+            {isOpen && <AdditionalServices />}
           </ul>
 
           {isOpen && <SubListMenu />}

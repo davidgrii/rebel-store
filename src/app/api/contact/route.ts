@@ -11,7 +11,9 @@ type IForm = {
 
 export async function POST(req: NextRequest) {
   try {
-    const { name, email, phoneNumber, message }: IForm = await req.json()
+    const { name, email, phoneNumber }: IForm = await req.json()
+    
+    console.log(email)
 
     const transporter = nodemailer.createTransport({
       host: process.env.EMAIL_SERVER_HOST,
@@ -19,33 +21,33 @@ export async function POST(req: NextRequest) {
       secure: false,
       auth: {
         user: process.env.EMAIL_SERVER_USER,
-        pass: process.env.EMAIL_SERVER_PASSWORD,
-      },
+        pass: process.env.EMAIL_SERVER_PASSWORD
+      }
     })
 
     const mailOptions = {
       from: process.env.EMAIL_FROM,
       to: process.env.EMAIL_SERVER_USER,
-      subject: `Jazzo Studio have a new message from ${name}`,
-      text: `From ${email}\nPhone: ${phoneNumber}\n\nMessage: ${message} `,
+      subject: `Получена новая заявка от ${name}`,
+      text: `От ${name}\nEmail: ${email}\n\nТелефон: ${phoneNumber} `
     }
 
     await transporter.sendMail(mailOptions)
 
     return new Response(JSON.stringify({ success: true }), {
       status: 200,
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json' }
     })
   } catch (error) {
     if (error instanceof Error) {
       return new Response(JSON.stringify({ error: error.message }), {
         status: 500,
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json' }
       })
     } else {
       return new Response(JSON.stringify({ error: 'Unknown error occurred' }), {
         status: 500,
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json' }
       })
     }
   }

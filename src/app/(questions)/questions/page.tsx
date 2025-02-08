@@ -1,81 +1,98 @@
 'use client'
 
+import { motion } from 'framer-motion'
 import { CTASection } from '@/shared/components/ui/cta-section'
 import { Container } from '@/shared/components/ui/container'
 import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger
+} from '@/shared/components/ui/accordion'
+import {
   Breadcrumb,
   BreadcrumbItem,
-  BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbSeparator
 } from '@/shared/components/ui/breadcrumb'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 import { ServicesMenu } from '@/widgets/app-sidebar/ui/services-menu'
 
-const paymentInfo = [
-  'Банковская карта. При оформлении заказа выберите способ оплаты «Карта» и оплатите товар банковской картой Visa, Mastercard, МИР, а также платежными сервисами SberPay, СБП.',
-  'Карта рассрочки*. «Халва» ',
-  'Безналичный платеж*. Для получения счета на оплату юридическому лицу выберите способ оплаты “Счет предприятия”. После получения заказа наш менеджер свяжется с Вами и выставит Вам счет на указанные контактные данные. ',
-  'Кредит или Рассрочка*. Вы можете приобрести любые товары, представленные в интернет-магазине www.mebelshara.ru в кредит или в рассрочку без первого взноса, на срок от 6 до 36 месяцев. Выберите один из способов оплаты “Кредит” или “Рассрочка” и после получения заказа наш менеджер подберет для Вас наиболее подходящую программу кредитования.'
+const questions = [
+  {
+    id: '0',
+    question: 'Как я получу свой заказ?',
+    answer: 'text'
+  },
+  {
+    id: '1',
+    question: 'Как я получу свой заказ?',
+    answer: 'text'
+  },
+  {
+    id: '2',
+    question: 'Как я получу свой заказ?',
+    answer: 'text'
+  },
+  {
+    id: '3',
+    question: 'Как я получу свой заказ?',
+    answer: 'text'
+  },
+  {
+    id: '4',
+    question: 'Как я получу свой заказ?',
+    answer: 'text'
+  }
 ]
 
-export default function PaymentPage() {
-  const pathName = usePathname()
-
+export default function QuestionsPage() {
   return (
-    <div className={'bg-secondary pb-10 pl-16'}>
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 1, ease: 'easeOut' }}
+      className={'bg-secondary pb-10 lg:pl-16'}
+    >
       <div className={'flex'}>
         <ServicesMenu />
 
-        <Container className={'bg-background px-10 pb-6 w-full'}>
+        <Container className={'bg-background pb-6 w-full md:px-10'}>
           <Breadcrumb className={'mt-6 mb-7'}>
             <BreadcrumbList className={'items-center'}>
               <BreadcrumbItem>
-                <BreadcrumbLink>
-                  <Link href='/'>Главная</Link>
-                </BreadcrumbLink>
+                <Link href='/'>Главная</Link>
               </BreadcrumbItem>
               <BreadcrumbSeparator />
               <BreadcrumbItem>
-                <BreadcrumbLink>
-                  <Link href='#'>Оплата</Link>
-                </BreadcrumbLink>
+                <Link href='#'>Вопросы и ответы</Link>
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
-          <h3 className={'text-3xl font-bold mb-8'}>Оплата</h3>
-          <ul
-            className={
-              'flex flex-col gap-1 mb-3 list-disc max-w-3xl text-[#2e332d]'
-            }
-          >
-            <label>
-              Вы можете произвести оплату товара следующим способом:
-            </label>
-            {paymentInfo.map((item, index) => (
-              <li className={'ml-4'} key={index}>
-                {item}
-              </li>
+
+          <h3 className={'text-3xl font-bold mb-8'}>Вопросы и ответы</h3>
+
+          <Accordion className={'max-w-3xl'} type='single' collapsible>
+            {questions.map(({ question, answer, id }, index) => (
+              <AccordionItem
+                className={
+                  'border-t transition duration-200 hover:bg-foreground/10 px-4'
+                }
+                key={index}
+                value={id}
+              >
+                <AccordionTrigger className={'font-bold text-[17px]'}>
+                  {question}
+                </AccordionTrigger>
+                <AccordionContent>{answer}</AccordionContent>
+              </AccordionItem>
             ))}
-          </ul>
-
-          <p className={'mb-3 max-w-3xl'}>
-            Программы кредитования и рассрочки действуют во всех фирменных
-            салонах Мебель Шара. Наши специалисты помогут Вам подобрать
-            наилучшие условия в соответствии с Вашими пожеланиями.{' '}
-          </p>
-
-          <p className={'max-w-3xl'}>
-            * При оплате товара в рассрочку (в том числе картой рассрочки
-            собственными или заемными средствами), а также при безналичном
-            расчете акции и скидки по товару обнуляются – покупка осуществляется
-            по неакционной цене.
-          </p>
+          </Accordion>
         </Container>
       </div>
 
-      <CTASection className={'mx-10'} />
-    </div>
+      <CTASection />
+    </motion.div>
   )
 }

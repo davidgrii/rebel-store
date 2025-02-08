@@ -6,7 +6,7 @@ interface IAppModalStore {
 }
 
 export const useAppModalStore = create<IAppModalStore>((set) => ({
-  isOpen: true,
+  isOpen: false,
 
   setIsModalOpen: (open) => set({ isOpen: open })
 }))

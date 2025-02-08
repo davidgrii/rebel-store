@@ -6,7 +6,7 @@ interface IProps {
   className?: string
 }
 
-export const Product: React.FC<IProps> = () => {
+export const ProductItem: React.FC<IProps> = () => {
   return (
     <div className={'w-full max-w-4xl mr-4'}>
       <div>

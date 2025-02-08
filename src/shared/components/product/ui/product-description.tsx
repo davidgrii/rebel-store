@@ -5,7 +5,7 @@ interface IProps {
   className?: string
 }
 
-export const ProductBenefits: React.FC<IProps> = () => {
+export const ProductDescription: React.FC<IProps> = () => {
   return (
     <div className={'flex flex-col gap-6 max-w-5xl pt-6 pb-6'}>
       <div className={'mb-6'}>
@@ -38,7 +38,7 @@ export const ProductBenefits: React.FC<IProps> = () => {
         />
       </div>
 
-      <div className={'flex items-center'}>
+      <div className={'flex flex-col xl:items-center xl:flex-row'}>
         <Image
           className={'rounded-[8]'}
           width={510}
@@ -47,7 +47,7 @@ export const ProductBenefits: React.FC<IProps> = () => {
           alt={'d'}
         />
 
-        <div className={'ml-12'}>
+        <div className={'mt-4 xl:mt-0 xl:ml-12'}>
           <h2 className={'font-bold text-2xl mb-4'}>
             Эксклюзивные металлические ручки
           </h2>
@@ -68,7 +68,7 @@ export const ProductBenefits: React.FC<IProps> = () => {
         </div>
       </div>
 
-      <div className={'flex items-center'}>
+      <div className={'flex flex-col xl:items-center xl:flex-row'}>
         <Image
           className={'rounded-[8]'}
           width={510}
@@ -77,12 +77,12 @@ export const ProductBenefits: React.FC<IProps> = () => {
           alt={'d'}
         />
 
-        <div className={'ml-12'}>
+        <div className={'mt-4 xl:mt-0 xl:ml-12'}>
           <h2 className={'font-bold text-2xl mb-4'}>
             Эксклюзивные металлические ручки
           </h2>
 
-          <ul className='list-disc pl-5 text-sm'>
+          <ul className='list-disc text-sm pl-5'>
             <li className={'mb-2'}>
               Цвет <b>Брашированное золото</b> обладает оригинальным текстурным
               эффектом, который придает ручкам уникальный и неповторимый стиль,

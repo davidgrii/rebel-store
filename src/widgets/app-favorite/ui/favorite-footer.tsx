@@ -7,7 +7,7 @@ interface IProps {
   className?: string
 }
 
-export const CartFooter: React.FC<IProps> = () => {
+export const FavoriteFooter: React.FC<IProps> = () => {
   const { setIsOpen } = useCartStore()
   const { setIsModalOpen } = useAppModalStore()
 
@@ -19,11 +19,6 @@ export const CartFooter: React.FC<IProps> = () => {
   return (
     <>
       <div className={'flex flex-col px-4 pb-6 border-t pt-4 md:px-9'}>
-        <div className={'text-right font-semibold mb-3 sm:mr-4  sm:mb-6'}>
-          <span className={'text-sm sm:text-lg mr-2'}>Итого:</span>
-          <span className={'text-xl sm:text-2xl font-bold'}>9999₽</span>
-        </div>
-
         <div className={'flex flex-col gap-4 justify-between sm:flex-row'}>
           <Button
             onClick={() => setIsOpen(false)}

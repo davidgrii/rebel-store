@@ -3,13 +3,13 @@ import { Button } from '@/shared/components/ui/button'
 import { CloseIcon } from 'next/dist/client/components/react-dev-overlay/internal/icons/CloseIcon'
 import Image from 'next/image'
 import Link from 'next/link'
-import { MinusIcon, PlusIcon } from '@/shared/icons'
+import { IconHeartFilled } from '@tabler/icons-react'
 
 interface IProps {
   className?: string
 }
 
-export const CartProduct: React.FC<IProps> = () => {
+export const FavoriteProduct: React.FC<IProps> = () => {
   return (
     <div
       className={
@@ -37,7 +37,7 @@ export const CartProduct: React.FC<IProps> = () => {
 
           <div
             className={
-              'flex justify-center text-sm flex-col max-w-56 mr-1 sm:mr-5 sm:text-[15px] md:justify-between '
+              'flex justify-center text-sm flex-col max-w-56 mr-1 sm:mr-6 sm:text-[15px] md:justify-between '
             }
           >
             <Link href={'#'} className={''}>
@@ -48,32 +48,16 @@ export const CartProduct: React.FC<IProps> = () => {
         </div>
       </div>
 
-      <div className={'flex w-full justify-between '}>
-        <span className={'text-lg font-normal sm:text-xl '}>39 999₽</span>
+      <div
+        className={
+          'flex items-center justify-between w-full lg:justify-end lg:gap-16'
+        }
+      >
+        <span className={'text-lg font-semibold sm:text-xl'}>39 999₽</span>
 
-        <div
-          className={'flex gap-2 items-center border border-[#bfc2be] rounded '}
-        >
-          <Button
-            className={
-              'w-8 h-8 rounded-full p-2 transition-opacity opacity-80 hover:opacity-100'
-            }
-            variant={'ghost'}
-          >
-            <MinusIcon />
-          </Button>{' '}
-          <span className={'font-bold '}>1</span>
-          <Button
-            className={
-              'w-8 h-8 p-2 transition-opacity opacity-80 hover:opacity-100'
-            }
-            variant={'ghost'}
-          >
-            <PlusIcon />
-          </Button>
-        </div>
-
-        <span className={'text-lg font-bold sm:text-xl md:mr-8'}>39 999₽</span>
+        <IconHeartFilled
+          className={'text-accent w-7 h-7 md:w-8 md:h-8 md:mr-6'}
+        />
       </div>
     </div>
   )

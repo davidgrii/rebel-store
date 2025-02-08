@@ -2,18 +2,18 @@
 
 import React from 'react'
 import { AlignJustify } from 'lucide-react'
-import { useMenuStore } from '@/shared/store/menu.store'
+import { useMobileMenuStore } from '@/shared/store/app-sidebar/mobile-menu.store'
 
 interface IProps {
   className?: string
 }
 
-export const Menu: React.FC<IProps> = () => {
-  const { isOpen, setIsOpen } = useMenuStore()
+export const MobileBurgerIcon: React.FC<IProps> = () => {
+  const { isMobileMenuOpen, setIsMobileMenuOpen } = useMobileMenuStore()
 
   return (
     <div
-      onClick={() => setIsOpen(!isOpen)}
+      onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
       className={'block lg:hidden cursor-pointer p-1 -m-1'}
     >
       <AlignJustify strokeWidth={1.5} />

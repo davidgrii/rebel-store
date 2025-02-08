@@ -8,42 +8,47 @@ import {
   BreadcrumbSeparator
 } from '@/shared/components/ui/breadcrumb'
 import Link from 'next/link'
-import { ServicesMenu } from '@/widgets/app-sidebar/ui/services-menu'
+import Image from 'next/image'
+import { blogProjects } from '@/shared/constants'
 
-const paymentInfo = [
-  'Стоимость сборки указана на странице Товара.',
-  'Сборку можно заказать в момент оформления Заказа или в любое другое время по желанию Покупателя, в т.ч. после передачи товара. ',
-  'Минимальная стоимость услуг по сборке мебели - 1200 рублей.',
-  'Монтаж Товаров осуществляется за дополнительную плату третьими лицами, которых Покупатель может привлечь самостоятельно или воспользоваться услугами лиц, рекомендованных интернет-магазином Мебель Шара. Оплата данных услуг осуществляется непосредственно третьему лицу согласно прейскуранту.',
-  'Оплата выезда сервисного мастера на сборку за пределы населенного пункта, в котором присутствует фирменный салон «Мебель Шара» – 15р/км, для Москвы и Московской области - 25 руб/км за пределы г. Подольск, осуществляется Покупателем напрямую сервисному мастеру в момент сборки товара.'
-]
-
-export default function AssemblyPage() {
+export default function BlogPage() {
   return (
-    <div className={'bg-secondary pb-10 md:pl-16'}>
+    <div className={'bg-secondary pb-10 lg:pl-16'}>
       <div className={'flex'}>
-        <ServicesMenu />
-
         <Container className={'bg-background pb-6 w-full md:px-10'}>
           <Breadcrumb className={'mt-6 mb-7'}>
             <BreadcrumbList className={'items-center'}>
               <Link href='/'>Главная</Link>
               <BreadcrumbSeparator />
-              <Link href='#'>Сборка</Link>
+              <Link href='#'>Блог</Link>
             </BreadcrumbList>
           </Breadcrumb>
-          <h3 className={'text-3xl font-bold mb-8'}>Сборка</h3>
-          <ul
+          <h3 className={'text-3xl font-bold mb-8'}>Блог</h3>
+
+          <div
             className={
-              'flex flex-col gap-1 mb-3 list-disc max-w-3xl text-[#2e332d]'
+              'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'
             }
           >
-            {paymentInfo.map((item, index) => (
-              <li className={'ml-4'} key={index}>
-                {item}
-              </li>
+            {blogProjects.map((item) => (
+              <Link href={`/blog/${item.id}`} key={item.id}>
+                <Image
+                  width={400}
+                  height={170}
+                  className={'h-44 rounded mb-4'}
+                  src={item.image}
+                  alt={''}
+                />
+                <h4 className={'text-[16px] font-bold mb-1.5 leading-tight'}>
+                  {item.title}
+                </h4>
+                <span className={'text-sm text-muted-foreground mb-3'}>
+                  {item.date}
+                </span>
+                <p className={'text-sm font-normal'}>{item.description}</p>
+              </Link>
             ))}
-          </ul>
+          </div>
         </Container>
       </div>
 

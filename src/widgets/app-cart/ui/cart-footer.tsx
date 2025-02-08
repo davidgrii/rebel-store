@@ -38,7 +38,7 @@ export const CartFooter: React.FC<IProps> = () => {
           <Button
             onClick={handleRequest}
             className={
-              'text-[16px] py-4 h-11 px-4 w-full font-semibold sm:max-w-64'
+              'text-[16px] py-4 h-11 rounded px-4 w-full font-semibold sm:max-w-64'
             }
           >
             Оставить заявку

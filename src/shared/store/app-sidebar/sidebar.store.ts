@@ -1,11 +1,11 @@
 import { create } from 'zustand/react'
 
-interface IMenuStore {
+interface ISidebarStore {
   isOpen: boolean
   setIsOpen: (open: boolean) => void
 }
 
-export const useMenuStore = create<IMenuStore>((set) => ({
+export const useSidebarStore = create<ISidebarStore>((set) => ({
   isOpen: false,
   setIsOpen: (open) => set({ isOpen: open })
 }))

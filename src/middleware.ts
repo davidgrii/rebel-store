@@ -4,7 +4,7 @@ export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl
 
   if (pathname === '/') {
-    return NextResponse.redirect(new URL('/hero', req.url))
+    return NextResponse.redirect(new URL('/main', req.url))
   }
 
   return NextResponse.next()
